@@ -237,6 +237,25 @@ import QuartzCore
         backgroundView.userInteractionEnabled = false
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
+				
+        // thumb
+        self.thumbView = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
+        thumbView.backgroundColor = self.thumbTintColor
+        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+        thumbView.layer.shadowColor = self.shadowColor.CGColor
+        thumbView.layer.shadowRadius = 2.0
+        thumbView.layer.shadowOpacity = 0.5
+        thumbView.layer.shadowOffset = CGSizeMake(0, 3)
+        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
+        thumbView.layer.masksToBounds = false
+        thumbView.userInteractionEnabled = false
+        self.addSubview(thumbView)
+        
+        // thumb image
+        self.thumbImageView = UIImageView(frame: CGRectMake(0, 0, thumbView.frame.size.width, thumbView.frame.size.height))
+        thumbImageView.contentMode = UIViewContentMode.Center
+        thumbImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        thumbView.addSubview(thumbImageView)
         
         // on/off images
         self.onImageView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width - self.frame.size.height, self.frame.size.height))
@@ -261,25 +280,6 @@ import QuartzCore
         offLabel.textColor = UIColor.lightGrayColor()
         offLabel.font = UIFont.systemFontOfSize(12)
         backgroundView.addSubview(offLabel)
-        
-        // thumb
-        self.thumbView = UIView(frame: CGRectMake(1, 1, self.frame.size.height - 2, self.frame.size.height - 2))
-        thumbView.backgroundColor = self.thumbTintColor
-        thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
-        thumbView.layer.shadowColor = self.shadowColor.CGColor
-        thumbView.layer.shadowRadius = 2.0
-        thumbView.layer.shadowOpacity = 0.5
-        thumbView.layer.shadowOffset = CGSizeMake(0, 3)
-        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).CGPath
-        thumbView.layer.masksToBounds = false
-        thumbView.userInteractionEnabled = false
-        self.addSubview(thumbView)
-        
-        // thumb image
-        self.thumbImageView = UIImageView(frame: CGRectMake(0, 0, thumbView.frame.size.width, thumbView.frame.size.height))
-        thumbImageView.contentMode = UIViewContentMode.Center
-        thumbImageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        thumbView.addSubview(thumbImageView)
     
         self.on = false
     }
